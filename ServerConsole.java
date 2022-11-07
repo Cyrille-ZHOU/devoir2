@@ -32,9 +32,12 @@ public class ServerConsole implements ChatIF {
 		      {
 		        message = fromConsole.readLine();
 		        
-		       if(message.equals("#stop")) {
-		    	   server.close();
-		    	   
+		        if(message.equals("#quit")) {
+		        	server.close();
+		        }else if(message.equals("#stop")) {
+		    	   server.stopListening();
+		        }else if(message.equals("#close")) {
+		        	server.close();		    	   
 		       }else if(message.equals("#setport")) {
 		    	   if(server.isListening()) {
 		   			System.out.println("ne peut pas setport quand le server est encore connecté");
