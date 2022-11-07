@@ -54,11 +54,9 @@ public class EchoServer extends AbstractServer
    * @param msg The message received from the client.
    * @param client The connection from which the message originated.
    */
-  public void handleMessageFromClient
-    (Object msg, ConnectionToClient client)
-  {
-	if (msg.toString().startsWith("#login "))
-	    {if (client.getInfo("loginID") != null){try
+  public void handleMessageFromClient(Object msg, ConnectionToClient client){
+	  if (msg.toString().startsWith("#login ")){
+	  		if (client.getInfo("loginID") != null){try
 	    		{
 		         	client.sendToClient("Vous avez deja logged in.");
 		        }catch (IOException e){}
@@ -75,13 +73,15 @@ public class EchoServer extends AbstractServer
 		          client.sendToClient("login avant du chat.");
 		          client.close();
 		        }
-		        catch (IOException e) {}
+		        catch (IOException e) {
+					}
+		        
 		        return;
 		      }
 	  
 	  
-    System.out.println("Message received: " + msg + " from " + client);
-    this.sendToAllClients(msg);}
+    System.out.println("Message received: " + msg + " from " + client.getInfo("loginID"));
+    this.sendToAllClients(client.getInfo("loginID") + "> " + msg);}
   }
     
   /**
