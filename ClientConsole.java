@@ -118,7 +118,7 @@ public class ClientConsole implements ChatIF
   public static void main(String[] args) 
   {
     String host ;
-    String loginID;
+    String loginID="";
     int port=0;
     
     try{
@@ -127,7 +127,6 @@ public class ClientConsole implements ChatIF
     {
       System.out.println("loginID est obligatoire!!!!!");
       System.exit(1);
-      return;
     }
 
 
