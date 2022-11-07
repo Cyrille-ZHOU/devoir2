@@ -80,12 +80,12 @@ public class ClientConsole implements ChatIF
   {
     try
     {
-
+    BufferedReader fromConsole = new BufferedReader(new InputStreamReader(System.in));
       String message;
 
       while (true) 
       {
-        message = fromConsole.nextLine();
+        message = fromConsole.readLine();
         client.handleMessageFromClientUI(message);
       }
     } 
@@ -117,9 +117,9 @@ public class ClientConsole implements ChatIF
    */
   public static void main(String[] args) 
   {
-    String host = "";
+    String host ;
     String loginID;
-    int port;
+    int port=0;
     
     try{
     	loginID = args[0];
