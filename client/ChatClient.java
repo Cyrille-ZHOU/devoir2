@@ -1,3 +1,5 @@
+
+
 // This file contains material supporting section 3.7 of the textbook:
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
@@ -27,7 +29,6 @@ public class ChatClient extends AbstractClient
    */
   ChatIF clientUI; 
   String loginID;
-
   
   //Constructors ****************************************************
   
@@ -39,16 +40,7 @@ public class ChatClient extends AbstractClient
    * @param clientUI The interface type variable.
    */
   
-  public ChatClient(String host, int port, ChatIF clientUI) 
-    throws IOException 
-  {
-    super(host, port); //Call the superclass constructor
-    this.clientUI = clientUI;
-
-    this.loginID = "default";
-    openConnection();
-    sendToServer("#login default");
-  }
+  
   
   public ChatClient(String loginID,String host, int port, ChatIF clientUI) 
 		    throws IOException 
@@ -57,7 +49,7 @@ public class ChatClient extends AbstractClient
 		    this.clientUI = clientUI;
 		    this.loginID = loginID;
 
-		    openConnection();
+		    this.openConnection();
 		    sendToServer("#login"+loginID);
 		  }
 
@@ -91,7 +83,7 @@ public class ChatClient extends AbstractClient
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 clientUI.display("Vous avez deja disconnecté."); 
+		 clientUI.display("Vous avez deja deconnecté."); 
 
 		
 	}else if(message.startsWith("#sethost")) {
@@ -128,11 +120,9 @@ public class ChatClient extends AbstractClient
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			loginID = message.substring(7);
 		      try
 		      {
 		        openConnection();
-		        sendToServer("#login " + loginID);
 		      }
 		      catch (Exception e)
 		      {
