@@ -1,5 +1,6 @@
 
 
+
 // This file contains material supporting section 3.7 of the textbook:
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
@@ -50,7 +51,7 @@ public class ChatClient extends AbstractClient
 		    this.loginID = loginID;
 
 		    this.openConnection();
-		    sendToServer("#login"+loginID);
+		    sendToServer("#login "+loginID);
 		  }
 
   
@@ -79,13 +80,11 @@ public class ChatClient extends AbstractClient
 	}else if(message.equals("#logoff")) {
 		 try {
 			closeConnection();
+			 clientUI.display("Vous avez deja deconnecté."); 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		 clientUI.display("Vous avez deja deconnecté."); 
-
-		
+		}	
 	}else if(message.startsWith("#sethost")) {
 		if(isConnected()) {
 			System.out.println("ne peut pas sethost quand le client est encore connecté");
@@ -99,7 +98,7 @@ public class ChatClient extends AbstractClient
 		}
 	}else if(message.startsWith("#setport")) {
 		if(isConnected()) {
-			System.out.println("ne peut pas sethost quand le client est encore connecté");
+			System.out.println("ne peut pas setport quand le client est encore connecté");
 		}else {
 			try{
 				int port = Integer.parseInt(message.split(" ")[1]);
@@ -136,7 +135,7 @@ public class ChatClient extends AbstractClient
 	}else {
     try
     {
-      sendToServer(message);
+      sendToServer(message.toString());
     }
     catch(IOException e)
     {
@@ -174,6 +173,7 @@ public class ChatClient extends AbstractClient
   }
   
   protected void connectionException(Exception exception) {
+	  exception.printStackTrace();
 	  System.out.println("Le serveur s'est arrêté, veuillez quiter.");
 	  quit();
 	  
